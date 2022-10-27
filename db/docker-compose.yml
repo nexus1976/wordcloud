@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  wordcloud-db:
+    image: wordcloud-db
+    container_name: wordcloud-db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpassword
+      - POSTGRES_DB=wordclouddb
+    volumes:
+      - "wordclouddb-data:/var/lib/postgresql/data"
+      
+volumes:
+  wordclouddb-data:
+networks:
+  wordcloudbe:
+    driver: bridge
+    name: wordcloudbe
+
+# https://docs.confluent.io/5.5.0/connect/debezium-connect-postgres/index.html#enable-logical-decoding
+# follow these instructions to enable WAL on the postgres server in order to make the calls to establish the
+# kafka connector to work properly 
