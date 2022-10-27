@@ -14,7 +14,7 @@
         { 
             get
             {
-                return Page * PageSize;
+                return (Page - 1) * PageSize;
             }
         }
 

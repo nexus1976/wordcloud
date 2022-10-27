@@ -8,7 +8,12 @@ namespace wordcloud.Domain
     {
         private readonly HashSet<string> _articles = new()
         {
-            "a", "to", "the", "it", "or", "and", "an", "of", "by", "on", "for", "this", "that"
+            "a", "to", "the", "it", "or", "and", "an", "of", "by", "on", "for", "this", "that", "is", "in", "then", "until", "from"
+        };
+
+        private readonly HashSet<char> _punctuations = new()
+        {
+            ',', '.', '!', '?', ':', ';', '"', '\'', '(', ')', '{', '}', '/', '<', '>', '\\', '@', '#', '$', '%', '^', '&', '*', '_', '=', '+', '|', '[', ']', '-'
         };
 
         public string ParseComment(string comment)
@@ -29,6 +34,11 @@ namespace wordcloud.Domain
             }
             return sb.ToString();
         }
+        //private string RemovePunctuation(string comment)
+        //{
+        //    StringBuilder sb = new(comment);
+            
+        //}
 
         public async Task<IDictionary<string, WordCount>> GetWordCountsAsync(string parsedComment, ICommandContext commandContext, CancellationToken cancellationToken)
         {
