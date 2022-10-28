@@ -8,5 +8,6 @@ namespace wordcloud.Models
         IEnumerable<CommentModel>? MapCommentEntitiesToCommentModels(IEnumerable<Comment>? entities);
         Comment? MapCommentModelToCommentEntity(CommentModel? model);
         WordCountModel? MapWordCountEntityToWordCountModel(WordCount? entity);
+        IEnumerable<WordCountModel>? MapWordCountEntitiessToWordCountModels(IEnumerable<WordCount?> entities);
     }
 }

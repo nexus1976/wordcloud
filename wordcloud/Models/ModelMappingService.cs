@@ -51,10 +51,22 @@ namespace wordcloud.Models
             var model = new WordCountModel()
             {
                 Word = entity.Word,
-                Count = entity.Count,
-                Id = entity.Id
+                Count = entity.Count
             };
             return model;
+        }
+        public IEnumerable<WordCountModel>? MapWordCountEntitiessToWordCountModels(IEnumerable<WordCount?> entities)
+        {
+            if (entities == null)
+                return null;
+            var modelList = new List<WordCountModel>();
+            foreach (var entity in entities)
+            {
+                var model = MapWordCountEntityToWordCountModel(entity);
+                if (model != null)
+                    modelList.Add(model);
+            }
+            return modelList;
         }
     }
 }
