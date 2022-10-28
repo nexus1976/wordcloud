@@ -8,7 +8,7 @@ namespace wordcloud.Domain
     {
         private readonly HashSet<string> _articles = new()
         {
-            "a", "to", "the", "it", "or", "and", "an", "of", "by", "on", "for", "this", "that", "is", "in", "then", "until", "from"
+            "a", "to", "the", "it", "or", "and", "an", "of", "by", "on", "for", "this", "that", "is", "in", "then", "until", "from", "so"
         };
 
         private readonly HashSet<char> _punctuations = new()
@@ -26,19 +26,22 @@ namespace wordcloud.Domain
             StringBuilder sb = new();
             foreach (var item in arr)
             {
-                if (!_articles.Contains(item))
+                if (!_articles.Contains(item.ToLower()))
                 {
                     sb.Append(item);
                     sb.Append(' ');
                 }
             }
-            return sb.ToString();
+            return RemovePunctuation(sb);
         }
-        //private string RemovePunctuation(string comment)
-        //{
-        //    StringBuilder sb = new(comment);
-            
-        //}
+        private string RemovePunctuation(StringBuilder sb)
+        {
+            foreach (var item in _punctuations)
+            {
+                sb.Replace(item, ' ');
+            }
+            return sb.ToString().Trim();
+        }
 
         public async Task<IDictionary<string, WordCount>> GetWordCountsAsync(string parsedComment, ICommandContext commandContext, CancellationToken cancellationToken)
         {
