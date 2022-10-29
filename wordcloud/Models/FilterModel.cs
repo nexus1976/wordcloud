@@ -2,8 +2,8 @@
 {
     public sealed class FilterModel
     {
-        public const int DEFAULT_PAGE = 1;
-        public const int DEFAULT_PAGESIZE = 50;
+        internal const int DEFAULT_PAGE = 1;
+        internal const int DEFAULT_PAGESIZE = 50;
 
         public int Page { get; set; }
         public int PageSize { get; set; }
