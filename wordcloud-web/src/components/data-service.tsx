@@ -1,4 +1,3 @@
-import * as dotenv from 'dotenv';
 import * as axios from 'axios';
 
 export interface IWordCountModel {
@@ -21,7 +20,6 @@ export interface IFilterModel {
 };
 
 export async function GetComments(filter: IFilterModel | null): Promise<ICommentModel[] | null> {
-	dotenv.config();
 	let url: string = process.env.BASE_URL + '/comments';
 	if (filter) {
 		url += `?page=${filter.page}&pageSize=${filter.pageSize}`;
@@ -34,6 +32,7 @@ export async function GetComments(filter: IFilterModel | null): Promise<IComment
 	}
 	try {
 		const response = await axios.default.get<Array<ICommentModel>>(url);
+		console.log('response', response);
 		return response?.data;
 	} catch (error) {
 		console.log(error);

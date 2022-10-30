@@ -19,15 +19,15 @@
     "@types/dotenv-webpack": "^7.0.3",
     "@types/node": "^18.11.7",
     "babel-loader": "^9.0.0",
+    "babel-preset-solid": "^1.6.0",
     "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "dotenv": "^16.0.3",
-    "dotenv-webpack": "^8.0.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "path": "^0.12.7",
+    "solid-transition-group": "^0.0.11",
     "style-loader": "^3.3.1",
     "typescript": "^4.8.4",
     "url-loader": "^4.1.1",
@@ -37,8 +37,11 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@ag-grid-community/client-side-row-model": "^28.2.0",
+    "@ag-grid-community/core": "^28.2.0",
+    "@ag-grid-community/solid": "^28.2.0",
+    "@ag-grid-community/styles": "^28.2.0",
     "axios": "^1.1.3",
-    "babel-preset-solid": "^1.6.0",
     "solid-js": "^1.6.0"
   }
 }

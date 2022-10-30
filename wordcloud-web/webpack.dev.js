@@ -4,8 +4,8 @@ const common = require('./webpack.common');
 const pkgVersion = require('./package.json').version;
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
+require('dotenv').config({ path: './.env' });
 
 module.exports = merge(common, {
 	mode: 'development',
@@ -13,7 +13,6 @@ module.exports = merge(common, {
 	entry: path.join(__dirname, 'src', 'index.tsx'),
 	plugins: [
 		new CleanWebpackPlugin(),
-		new Dotenv(),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src', 'index.html'),
 			pkgVersion,
@@ -22,6 +21,9 @@ module.exports = merge(common, {
 		}),
 		new webpack.optimize.LimitChunkCountPlugin({
 		  maxChunks: 1 // disable creating additional chunks
+		}),
+		new webpack.DefinePlugin({
+			'process.env': JSON.stringify(process.env)
 		})
 	],
 	output: {

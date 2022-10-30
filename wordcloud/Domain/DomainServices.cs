@@ -8,7 +8,10 @@ namespace wordcloud.Domain
     {
         private readonly HashSet<string> _articles = new()
         {
-            "a", "to", "the", "it", "or", "and", "an", "of", "by", "on", "for", "this", "that", "is", "in", "then", "until", "from", "so"
+            "a", "at", "to", "the", "it", "or", "and", "an", "of", "by", "on", "for", "this", "that",
+            "is", "in", "then", "until", "from", "so", "he", "him", "her", "she", "they", "them",
+            "no", "not", "his", "hers", "their", "theirs", "here", "there", "into", "onto", "unto"
+
         };
 
         private readonly HashSet<char> _punctuations = new()

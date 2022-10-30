@@ -23,7 +23,7 @@ const App: Component = () => {
 	return (
 		<For each={comments()}>
 			{(item, index) => (
-				<span>{item.comment} {item.commentDate && item.commentDate.toDateString()}</span>
+				<div><span>{item.comment} {item.commentDate && new Date(item.commentDate).toLocaleDateString()}</span><br /></div>
 			)}
 		</For>	
 	);

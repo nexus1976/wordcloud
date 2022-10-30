@@ -2,7 +2,12 @@ const path = require('path');
 
 module.exports = {
 	resolve: { 
-		extensions: ['.ts', '.tsx', '.js', 'jsx']
+		extensions: ['.ts', '.tsx', '.js', 'jsx'],
+		fallback: {
+			'fs': false,
+			'os': false,
+			'path': false
+		}
 	},
 	module: {
 		rules: [
