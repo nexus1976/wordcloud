@@ -39,3 +39,14 @@ export async function GetComments(filter: IFilterModel | null): Promise<IComment
 		return null;
 	}
 };
+
+export async function GetWordCounts(): Promise<IWordCountModel[] | null> {
+	const url: string = process.env.BASE_URL + '/WordCountsContoller';
+	try {
+		const response = await axios.default.get<Array<IWordCountModel>>(url);
+		return response?.data;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
+}

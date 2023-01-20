@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  wordclouddb:
+    image: wordclouddb
+    container_name: wordclouddb
+    build:
+      context: ../db
+      dockerfile: ../db/Dockerfile
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpassword
+      - POSTGRES_DB=wordclouddb
+    volumes:
+      - "wordclouddb-data:/var/lib/postgresql/data"
+
+  wordcloud:
+    image: wordcloud
+    container_name: wordcloud
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5892:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CorsAttribute_Headers=*
+      - CorsAttribute_Methods=*
+      - CorsAttribute_Origins=*
+      - AllowedHosts=*
+      - ConnectionStrings__Command=Host=wordclouddb;Database=wordclouddb;Username=dbuser;Password=dbpassword
+
+volumes:
+  wordclouddb-data:
+networks:
+  wordcloudbe:
+    driver: bridge
+    name: wordcloudbe      

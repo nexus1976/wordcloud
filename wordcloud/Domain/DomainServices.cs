@@ -8,9 +8,10 @@ namespace wordcloud.Domain
     {
         private readonly HashSet<string> _articles = new()
         {
-            "a", "at", "to", "the", "it", "or", "and", "an", "of", "by", "on", "for", "this", "that",
-            "is", "in", "then", "until", "from", "so", "he", "him", "her", "she", "they", "them",
-            "no", "not", "his", "hers", "their", "theirs", "here", "there", "into", "onto", "unto"
+            "a", "at", "to", "the", "it", "it's", "its", "or", "and", "an", "of", "by", "on", "for", "this", "that",
+            "is", "isn't", "am", "are", "be", "in", "then", "until", "from", "so", "he", "he's", "him", "her", "she", "she's", "they", "them",
+            "no", "not", "nor", "his", "hers", "their", "theirs", "here", "there", "there's", "they're", "we're", "were", "into", "onto", "unto",
+            "i", "i'm", "me", "you're", "your", "you", "do", "don't", "will", "won't", "can't"
 
         };
 
@@ -31,7 +32,7 @@ namespace wordcloud.Domain
             {
                 if (!_articles.Contains(item.ToLower()))
                 {
-                    sb.Append(item);
+                    sb.Append(item.ToLower());
                     sb.Append(' ');
                 }
             }

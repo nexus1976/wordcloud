@@ -1,55 +1,23 @@
-import { Component, createEffect, createSignal, For } from 'solid-js';
-import { GetComments, ICommentModel, IFilterModel } from './components/data-service';
-import AgGridSolid from '@ag-grid-community/solid';
-import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
-
-import '@ag-grid-community/styles';
+import { Component } from 'solid-js';
+import { Routes, Route, A } from '@solidjs/router';
+import { CommentsGrid } from './pages/comments-grid';
+import { WordCounts } from './pages/wordcounts';
 
 const App: Component = () => {
-	const [comments, setComments] = createSignal(new Array<ICommentModel>());
-	const defaultColDef = {
-		flex: 1,
-	  };
-	const columnDefs = [
-		{ field: 'id'},
-		{ field: 'comment'},
-		{ field: 'commentParsed'},
-		{
-			field: 'commentDate'
-		}
-	];
-	
-	const hydrateComments = () => {
-		const filter: IFilterModel = {
-			page: 1,
-			pageSize: 100,
-			fromDate: null,
-			toDate: null
-		};
-		GetComments(filter).then(res => {
-			if (res) {
-				setComments(res);
-			}	
-		});
-	};
-	
-	createEffect(() => hydrateComments());
-	
 	return (
-		// <For each={comments()}>
-		// 	{(item, index) => (
-		// 		<div><span>{item.comment} {item.commentDate && new Date(item.commentDate).toLocaleDateString()}</span><br /></div>
-		// 	)}
-		// </For>
-		<div class='ag-theme-alpha' style={{ height: '100%' }}>
-			<AgGridSolid
-				columnDefs={columnDefs}
-				rowData={comments()}
-				defaultColDef={defaultColDef}
-				modules={[ClientSideRowModelModule]}
-			/>
-		</div>
-	);
+		<>
+			<h1>Word Count App</h1>
+			<nav>
+				<A href='/comments'>Comments Grid</A>
+				<A href='/wordcounts'>Word Counts</A>
+			</nav>
+			<Routes>
+				<Route path='/comments' component={CommentsGrid} />
+				<Route path='/wordcounts' component={WordCounts} />
+				<Route path='/' component={CommentsGrid} />
+			</Routes>
+		</>
+	)
 };
 
 export default App;
